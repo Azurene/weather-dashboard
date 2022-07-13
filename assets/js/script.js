@@ -1,36 +1,30 @@
-// var citySearchEl = document.querySelector("#city-search"); // search form
-// var cityInputEl = document.querySelector("#city");
-// var cityButtonEl = document.querySelector("#city-submit");
 var weatherContainerEl = document.querySelector("#weather-container");
 
 var cityNameButtonEl = document.querySelector("#city-buttons");
-
-
-// var formSubmitHandler = function(event) {
-//   // prevent the page from refreshing
-//   event.preventDefault();
-//   // console.log("form submitted");
-
-//   // get value from input element
-//   var city = cityInputEl.value.trim();
-
-//   if (city) {
-//     getCityWeather(city);
-
-//     // clear old content 
-
-//   } else {
-//     alert("Please enter a city name");
-//   }
-// };
 
 var buttonClickHandler = function(event) {
   // get the city attribute from the clicked element
   var location = event.target.getAttribute("city-selection");
 
-  if (location === "Los-Angeles") {
-    var name = "Los+Angeles"
-    getCityWeather(name);
+  // clear old content
+  weatherContainerEl.textContent = "";
+
+  switch(location) {
+    case "Los-Angeles":
+      getCityWeather("Los+Angeles");
+      break;
+    case "Chicago":
+      getCityWeather("Chicago");
+      break;
+    case "New-York":
+      getCityWeather("New+York");
+      break;
+    case "Austin":
+      getCityWeather("Austin");
+      break;
+    case "Atlanta":
+      getCityWeather("Atlanta");
+      break;
   }
 }
 
@@ -64,16 +58,33 @@ var displayWeather = function(data) {
     return;
   }
 
-  var condition = data.weather[0].main;
-  var temp = data.main.temp;
-  var wind = data.wind.speed;
-  var humidity = data.main.humidity;
+  var city = data.name;
+  var condition = "Current Condition: " + data.weather[0].main;
+  var temp = "Temperature: " + data.main.temp + " °F";
+  var wind = "Wind: " + data.wind.speed + " mph";
+  var humidity = "Humidity: " + data.main.humidity + "%";
 
-  
 
-  console.log(condition);
-  console.log(temp);
+  var weatherData = [
+    condition,
+    temp,
+    wind,
+    humidity
+  ];
+
+  var titleEl = document.createElement("h2");
+  titleEl.textContent = city;
+
+  weatherContainerEl.appendChild(titleEl);
+  for (var i = 0; i < weatherData.length; i++) {
+
+    console.log(weatherData[i])
+    var weatherEl = document.createElement("div");
+    weatherEl.classList = "flex-row justify-space-between align-center";
+    weatherEl.textContent = weatherData[i];
+
+    weatherContainerEl.appendChild(weatherEl);
+  }
 }
 
-// cityButtonEl.addEventListener("click", formSubmitHandler);
 cityNameButtonEl.addEventListener("click", buttonClickHandler);
