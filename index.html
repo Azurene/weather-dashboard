@@ -20,13 +20,18 @@
 
     <!-- Search -->
     <section class="col-12 col-md-4">
-      <div class="card">
+      <!-- <div class="card">
         <h3 class="card-header text-uppercase">Search for a City:</h3>
         <form id="city-search" class="card-body">
-          <label class="form-label" for="search">City Name Here</label>
-          <input name="username" id="username" type="text" autofocus="true" class="form-input" />
-          <button type="submit" class="btn">Search</button>
+          <label class="form-label" for="city">ZIP Code Here</label>
+          <input name="city" id="city" type="text" autofocus="true" class="form-input" />
+          <button type="submit" class="btn" id="city-submit">Search</button>
         </form>
+      </div> -->
+
+      <h3 class="card-header text-uppercase">Select City</h3>
+      <div id="city-buttons" class="card-body">
+        <button city-selection="Los-Angeles" class="btn">Los Angeles</button>
       </div>
     </section>
 
@@ -38,6 +43,8 @@
       </div>
     </section>
   </main>
+
+  <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
